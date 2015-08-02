@@ -1,10 +1,25 @@
-<div id='container' ng-controller='LinkController'>
+<div id='container'>
    <div class='navigation'>
       <ul>
          <li><a href="#/links" class="links">Links</a></li>
          <li><a href="#/shorten" class="shorten">Shorten</a></li>
-         <!-- make signout work not just redirect to login page -->
-         <li><a href="#/signin" class="signout">Signout</a></li>
+         <li><a href="#/signin" class="signout" ng-click="Auth.signout()">Signout</a></li>
       </ul>
    </div>
+   
+   </br>
+   <input ng-model="filter" placeholder="Search URL" type="text"/>
+   <div class="links">
+     <div class="link" ng-repeat="link in data.links | filter:filter | orderBy:'-visits'">
+       <img src="assets/redirect_icon.png">
+       <div class="info">
+         <div class="visits">
+           <span class="count">{{link.visits}}</span>Visits
+         </div>
+         <div class="title">{{link.title}}</div>
+         <div class="original">{{link.url}}</div>
+         <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a>
+       </div>
+     </div>
+     </div>
 </div>

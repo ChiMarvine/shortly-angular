@@ -1,15 +1,14 @@
-<div id='container' ng-controller='ShortenController'>
+<div id='container'>
    <div class='navigation'>
       <ul>
          <li><a href="#/links" class="links">Links</a></li>
          <li><a href="#/shorten" class="shorten">Shorten</a></li>
-         <!-- make signout work not just redirect to login page -->
-         <li><a href="#/signin" class="signout">Signout</a></li>
+         <li><a href="#/signin" class="signout" ng-click="Auth.signout()">Signout</a></li>
       </ul>
    </div>
 
-   <form>
-      <input placeholder="Enter URL here">
-      <button ng-click="submit">Submit</button>
+   <form ng-submit="addLink()" name="shortenForm">
+      <input type="url" name="link" placeholder="Enter URL here" ng-model="link.url"/>
+      <button type="submit">Submit</button>
    </form>
 </div>
